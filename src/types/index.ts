@@ -78,3 +78,21 @@ export interface RegisterData {
   email: string;
   password: string;
 }
+
+export interface Project {
+  id: string;
+  name: string;
+  conductor: string;
+  season: Season;
+  created_at?: string;
+  updated_at?: string;
+}
+
+export interface ProjectFormData {
+  name: string;
+  conductor: string;
+  season: Season;
+}
+
+export type Season = '23/24' | '24/25' | '25/26' | '26/27' | '27/28';
+export const SEASONS: Season[] = ['23/24', '24/25', '25/26', '26/27', '27/28'];

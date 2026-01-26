@@ -4,6 +4,7 @@ import { useAuthStore } from '../../store/authStore';
 const navigation = [
   { name: 'Dashboard', path: '/dashboard', icon: '📊' },
   { name: 'Musicians', path: '/musicians', icon: '🎵' },
+  { name: 'Projects', path: '/projects', icon: '🎼' },
   { name: 'Rehearsals', path: '/rehearsals', icon: '📅' },
   { name: 'Statistics', path: '/statistics', icon: '📈' },
 ];

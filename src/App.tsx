@@ -6,6 +6,7 @@ import { LoginPage } from './pages/auth/LoginPage';
 import { RegisterPage } from './pages/auth/RegisterPage';
 import { DashboardPage } from './pages/dashboard/DashboardPage';
 import { MusiciansPage } from './pages/musicians/MusiciansPage';
+import { ProjectsPage } from './pages/projects/ProjectsPage';
 import { RehearsalsPage } from './pages/rehearsals/RehearsalsPage';
 import { StatisticsPage } from './pages/statistics/StatisticsPage';
 
@@ -44,6 +45,14 @@ function App() {
           element={
             <ProtectedRoute>
               <MusiciansPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/projects"
+          element={
+            <ProtectedRoute>
+              <ProjectsPage />
             </ProtectedRoute>
           }
         />
