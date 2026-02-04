@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { AxiosError } from 'axios';
 import { useAuthStore } from '../../store/authStore';
 import { authService } from '../../services/authService';
 
@@ -21,8 +22,9 @@ export const LoginPage: React.FC = () => {
       const response = await authService.login({ email, password });
       login(response.token, response.user);
       navigate('/musicians');
-    } catch (err: any) {
-      setError(err.response?.data?.detail || 'Login failed. Please check your credentials.');
+    } catch (err) {
+      const error = err as AxiosError<{ detail?: string }>;
+      setError(error.response?.data?.detail || 'Login failed. Please check your credentials.');
     } finally {
       setLoading(false);
     }

@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { AxiosError } from 'axios';
 import type { Musician, MusicianFormData } from '../../types';
 import { INSTRUMENTS } from '../../types';
 
@@ -51,8 +52,9 @@ export const MusicianModal: React.FC<MusicianModalProps> = ({
     try {
       await onSave(formData);
       onClose();
-    } catch (err: any) {
-      setError(err.response?.data?.detail || 'Failed to save musician');
+    } catch (err) {
+      const error = err as AxiosError<{ detail?: string }>;
+      setError(error.response?.data?.detail || 'Failed to save musician');
     } finally {
       setLoading(false);
     }

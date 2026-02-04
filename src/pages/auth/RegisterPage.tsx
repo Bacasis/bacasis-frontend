@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { AxiosError } from 'axios';
 import { authService } from '../../services/authService';
 
 export const RegisterPage: React.FC = () => {
@@ -36,8 +37,9 @@ export const RegisterPage: React.FC = () => {
         password,
       });
       navigate('/login', { state: { message: 'Registration successful! Please login.' } });
-    } catch (err: any) {
-      setError(err.response?.data?.detail || 'Registration failed. Please try again.');
+    } catch (err) {
+      const error = err as AxiosError<{ detail?: string }>;
+      setError(error.response?.data?.detail || 'Registration failed. Please try again.');
     } finally {
       setLoading(false);
     }

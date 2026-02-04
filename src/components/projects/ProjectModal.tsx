@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { AxiosError } from 'axios';
 import type { Project, ProjectFormData, Season } from '../../types';
 import { SEASONS } from '../../types';
 
@@ -48,8 +49,9 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
     try {
       await onSave(formData);
       onClose();
-    } catch (err: any) {
-      setError(err.response?.data?.detail || 'Failed to save project');
+    } catch (err) {
+      const error = err as AxiosError<{ detail?: string }>;
+      setError(error.response?.data?.detail || 'Failed to save project');
     } finally {
       setLoading(false);
     }
